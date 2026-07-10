@@ -1,0 +1,42 @@
+{
+  "name": "marked-github-alerts",
+  "version": "1.0.0",
+  "description": "A marked extension that renders GitHub-style GFM alerts",
+  "author": "Stamat <@stamat> (https://stamat.info)",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    },
+    "./styles.css": "./styles.css"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "styles.css"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest"
+  },
+  "keywords": [
+    "marked",
+    "markdown",
+    "gfm",
+    "alerts",
+    "github",
+    "octicons"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@primer/octicons": "^19.29.2",
+    "marked": "^9.0.3"
+  },
+  "devDependencies": {
+    "@jest/globals": "^30.2.0",
+    "eslint": "^9.39.3",
+    "jest": "^30.2.0"
+  }
+}
