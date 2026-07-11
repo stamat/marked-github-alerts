@@ -1,6 +1,8 @@
 # Contributing
 
-Thanks for contributing.
+Hey :wave! Help is always very appreciated!
+
+Thanks! :pray:
 
 ## Setup
 
