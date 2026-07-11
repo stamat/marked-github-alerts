@@ -26,6 +26,8 @@
     "markdown",
     "gfm",
     "alerts",
+    "admonitions",
+    "callouts",
     "github",
     "octicons"
   ],
