@@ -80,6 +80,8 @@ marked.use(
 - `prefers-color-scheme` support
 - manual overrides via `.marked-github-alert-theme-light` / `.marked-github-alert-theme-dark`
 
+Colors reference [Primer primitives](https://primer.style/primitives/) variables (`--fgColor-accent`, `--fgColor-danger`, ...) with GitHub hex fallbacks. If your page loads Primer's theme CSS (e.g. from [`@primer/primitives`](https://www.npmjs.com/package/@primer/primitives)), alerts pick up your theme automatically — no extra wiring needed.
+
 ## License
 
 MIT
