@@ -56,4 +56,27 @@ describe('markedGithubAlerts', () => {
     expect(html).toMatch(/<ul>/)
     expect(html).not.toMatch(/marked-github-alert-icon/)
   })
+
+  it('ignores markers with trailing text on the same line', () => {
+    const html = render('> [!NOTE] trailing text')
+    expect(html).toMatch(/<blockquote>/)
+    expect(html).not.toMatch(/marked-github-alert/)
+  })
+
+  it('renders alert with no body', () => {
+    const html = render('> [!NOTE]')
+    expect(html).toMatch(/marked-github-alert-note/)
+    expect(html).toMatch(/<span>Note<\/span>/)
+  })
+
+  it('does not treat Object.prototype keys as alert types', () => {
+    const html = render('> [!CONSTRUCTOR]\n> body')
+    expect(html).toMatch(/<blockquote>/)
+    expect(html).not.toMatch(/marked-github-alert/)
+  })
+
+  it('resolves document-level link references inside alerts', () => {
+    const html = render('> [!NOTE]\n> See [ref]\n\n[ref]: http://example.com')
+    expect(html).toMatch(/<a href="http:\/\/example\.com">ref<\/a>/)
+  })
 })

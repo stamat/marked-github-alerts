@@ -37,12 +37,15 @@
     "url": "git+https://github.com/stamat/marked-github-alerts.git"
   },
   "dependencies": {
-    "@primer/octicons": "^19.29.2",
-    "marked": "^9.0.3"
+    "@primer/octicons": "^19.29.2"
+  },
+  "peerDependencies": {
+    "marked": ">=9"
   },
   "devDependencies": {
     "@jest/globals": "^30.2.0",
     "eslint": "^9.39.3",
-    "jest": "^30.2.0"
+    "jest": "^30.2.0",
+    "marked": "^9.0.3"
   }
 }

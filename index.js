@@ -1,13 +1,7 @@
 import { Lexer } from 'marked'
-import * as octicons from '@primer/octicons'
+import octicons from '@primer/octicons'
 
 const ALERT_RE = /^\[!([a-z][a-z0-9_-]*)\][ \t]*(?:\n|$)/i
-const OCTICON_MAP =
-  octicons.default && typeof octicons.default === 'object'
-    ? octicons.default
-    : octicons['module.exports'] && typeof octicons['module.exports'] === 'object'
-      ? octicons['module.exports']
-      : octicons
 
 const DEFAULT_ALERTS = Object.freeze({
   note: { title: 'Note', icon: 'info' },
@@ -40,7 +34,8 @@ function escapeHtml(str) {
 }
 
 function buildAlerts(options) {
-  const map = {}
+  // Null prototype so lookups like alerts['constructor'] can't hit Object.prototype
+  const map = Object.create(null)
 
   for (const [key, config] of Object.entries(DEFAULT_ALERTS)) {
     map[key] = { ...config }
@@ -86,7 +81,7 @@ function renderIcon(icon, context, iconOptions) {
   if (rawIcon.startsWith('<')) return rawIcon
 
   const iconName = icon.toLowerCase()
-  const octicon = OCTICON_MAP[iconName]
+  const octicon = Object.hasOwn(octicons, iconName) ? octicons[iconName] : null
   if (!octicon || typeof octicon.toSVG !== 'function') return ''
 
   const customClass = iconOptions.class ? ` ${iconOptions.class}` : ''
@@ -105,8 +100,9 @@ export function markedGithubAlerts(options = {}) {
       {
         name: 'blockquote',
         renderer(token) {
-          const text = typeof token?.text === 'string' ? token.text : ''
-          const match = ALERT_RE.exec(text)
+          const first = token?.tokens?.[0]
+          if (!first || first.type !== 'paragraph' || typeof first.text !== 'string') return false
+          const match = ALERT_RE.exec(first.text)
           if (!match) return false
 
           const alertType = normalizeKey(match[1])
@@ -114,11 +110,27 @@ export function markedGithubAlerts(options = {}) {
           if (!alert) return false
 
           const alertClass = slugifyKey(alertType)
-          const title = escapeHtml(alert.title || humanizeKey(alertType))
-          const bodyMarkdown = text.slice(match[0].length)
-          const bodyTokens = bodyMarkdown.trim() ? Lexer.lex(bodyMarkdown, this.parser.options) : []
+          const rawTitle = alert.title || humanizeKey(alertType)
+          const title = escapeHtml(rawTitle)
+
+          // Reuse the already-lexed tokens (keeps document link refs resolved),
+          // stripping the [!TYPE] marker from the first paragraph.
+          const bodyTokens = token.tokens.slice(1)
+          const bodyText = first.text.slice(match[0].length)
+          if (bodyText.trim()) {
+            const inline = first.tokens ? first.tokens.slice() : []
+            if (inline[0] && typeof inline[0].raw === 'string' && inline[0].raw.startsWith(match[0])) {
+              const raw = inline[0].raw.slice(match[0].length)
+              if (raw) inline[0] = { ...inline[0], raw, text: raw }
+              else inline.shift()
+              bodyTokens.unshift({ ...first, raw: first.raw.slice(match[0].length), text: bodyText, tokens: inline })
+            } else {
+              // Fallback for unexpected inline shapes: re-lex the body text
+              bodyTokens.unshift(...Lexer.lex(bodyText, this.parser.options))
+            }
+          }
           const bodyHtml = this.parser.parse(bodyTokens)
-          const iconHtml = renderIcon(alert.icon, { type: alertType, title }, iconOptions)
+          const iconHtml = renderIcon(alert.icon, { type: alertType, title: rawTitle }, iconOptions)
 
           return `<div class="marked-github-alert marked-github-alert-${alertClass}">
 <p class="marked-github-alert-title">${iconHtml}<span>${title}</span></p>
