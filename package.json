@@ -32,6 +32,10 @@
     "octicons"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stamat/marked-github-alerts.git"
+  },
   "dependencies": {
     "@primer/octicons": "^19.29.2",
     "marked": "^9.0.3"
