@@ -39,6 +39,12 @@ describe('markedGithubAlerts', () => {
     expect(html).toMatch(/data-custom-html-icon="1"/)
   })
 
+  it('renders default octicons for built-in alerts', () => {
+    const html = render('> [!TIP]\n> body')
+    expect(html).toMatch(/marked-github-alert-icon/)
+    expect(html).toMatch(/octicon/)
+  })
+
   it('supports custom alert types', () => {
     const html = render('> [!FACT]\n> one\n>\n> - two', {
       alerts: {

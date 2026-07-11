@@ -2,6 +2,12 @@ import { Lexer } from 'marked'
 import * as octicons from '@primer/octicons'
 
 const ALERT_RE = /^\[!([a-z][a-z0-9_-]*)\][ \t]*(?:\n|$)/i
+const OCTICON_MAP =
+  octicons.default && typeof octicons.default === 'object'
+    ? octicons.default
+    : octicons['module.exports'] && typeof octicons['module.exports'] === 'object'
+      ? octicons['module.exports']
+      : octicons
 
 const DEFAULT_ALERTS = Object.freeze({
   note: { title: 'Note', icon: 'info' },
@@ -80,7 +86,7 @@ function renderIcon(icon, context, iconOptions) {
   if (rawIcon.startsWith('<')) return rawIcon
 
   const iconName = icon.toLowerCase()
-  const octicon = octicons[iconName]
+  const octicon = OCTICON_MAP[iconName]
   if (!octicon || typeof octicon.toSVG !== 'function') return ''
 
   const customClass = iconOptions.class ? ` ${iconOptions.class}` : ''

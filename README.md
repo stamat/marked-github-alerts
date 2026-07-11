@@ -1,4 +1,4 @@
-# marked-github-alerts
+# marked-github-alerts [![npm version](https://img.shields.io/npm/v/marked-github-alerts)](https://www.npmjs.com/package/marked-github-alerts)
 
 A lightweight [`marked`](https://www.npmjs.com/package/marked) extension for GitHub-style GFM alerts.
 
@@ -30,43 +30,45 @@ npm install marked-github-alerts
 ## Usage
 
 ```js
-import { Marked } from 'marked'
-import { markedGithubAlerts } from 'marked-github-alerts'
-import 'marked-github-alerts/styles.css'
+import { Marked } from "marked";
+import { markedGithubAlerts } from "marked-github-alerts";
+import "marked-github-alerts/styles.css";
 
-const marked = new Marked()
-marked.use(markedGithubAlerts())
+const marked = new Marked();
+marked.use(markedGithubAlerts());
 
-const html = marked.parse('> [!WARNING]\n> Back up your data.')
+const html = marked.parse("> [!WARNING]\n> Back up your data.");
 ```
 
 ## Options
 
 ```js
-marked.use(markedGithubAlerts({
-  // add or override alert configs
-  alerts: {
-    fact: { title: 'Fact', icon: 'beaker' }
-  },
+marked.use(
+  markedGithubAlerts({
+    // add or override alert configs
+    alerts: {
+      fact: { title: "Fact", icon: "beaker" },
+    },
 
-  // quick title overrides
-  titles: {
-    note: 'Heads up'
-  },
+    // quick title overrides
+    titles: {
+      note: "Heads up",
+    },
 
-  // quick icon overrides: octicon name, raw HTML/SVG, false, or function
-  icons: {
-    tip: 'zap',
-    warning: false,
-    important: '<span class="my-alert-icon" aria-hidden="true">❗</span>'
-  },
+    // quick icon overrides: octicon name, raw HTML/SVG, false, or function
+    icons: {
+      tip: "zap",
+      warning: false,
+      important: '<span class="my-alert-icon" aria-hidden="true">❗</span>',
+    },
 
-  // passed to octicon.toSVG
-  iconOptions: {
-    width: 16,
-    height: 16
-  }
-}))
+    // passed to octicon.toSVG
+    iconOptions: {
+      width: 16,
+      height: 16,
+    },
+  }),
+);
 ```
 
 ## Styles
