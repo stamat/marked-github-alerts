@@ -1,6 +1,6 @@
 {
   "name": "marked-github-alerts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A marked extension that renders GitHub-style GFM alerts",
   "author": "Stamat <@stamat> (https://stamat.info)",
   "type": "module",
