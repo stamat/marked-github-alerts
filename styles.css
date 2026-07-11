@@ -1,8 +1,8 @@
 .marked-github-alert {
   margin: 0 0 16px;
   padding: 8px 16px;
-  border-left: 0.25em solid var(--marked-github-alert-border-color, #d0d7de);
-  color: var(--marked-github-alert-text-color, #1f2328);
+  border-left: 0.25em solid var(--marked-github-alert-border-color, var(--borderColor-default, #d0d7de));
+  color: var(--marked-github-alert-text-color, var(--fgColor-default, #1f2328));
 }
 
 .marked-github-alert > :last-child {
@@ -16,7 +16,7 @@
   gap: 8px;
   font-weight: 600;
   line-height: 1;
-  color: var(--marked-github-alert-title-color, #1f2328);
+  color: var(--marked-github-alert-title-color, var(--fgColor-default, #1f2328));
 }
 
 .marked-github-alert-title .marked-github-alert-icon {
@@ -25,103 +25,103 @@
 }
 
 .marked-github-alert-note {
-  --marked-github-alert-border-color: #0969da;
-  --marked-github-alert-title-color: #0969da;
+  --marked-github-alert-border-color: var(--fgColor-accent, #0969da);
+  --marked-github-alert-title-color: var(--marked-github-alert-border-color);
 }
 
 .marked-github-alert-tip {
-  --marked-github-alert-border-color: #1a7f37;
-  --marked-github-alert-title-color: #1a7f37;
+  --marked-github-alert-border-color: var(--fgColor-success, #1a7f37);
+  --marked-github-alert-title-color: var(--marked-github-alert-border-color);
 }
 
 .marked-github-alert-important {
-  --marked-github-alert-border-color: #8250df;
-  --marked-github-alert-title-color: #8250df;
+  --marked-github-alert-border-color: var(--fgColor-done, #8250df);
+  --marked-github-alert-title-color: var(--marked-github-alert-border-color);
 }
 
 .marked-github-alert-warning {
-  --marked-github-alert-border-color: #9a6700;
-  --marked-github-alert-title-color: #9a6700;
+  --marked-github-alert-border-color: var(--fgColor-attention, #9a6700);
+  --marked-github-alert-title-color: var(--marked-github-alert-border-color);
 }
 
 .marked-github-alert-caution {
-  --marked-github-alert-border-color: #cf222e;
-  --marked-github-alert-title-color: #cf222e;
+  --marked-github-alert-border-color: var(--fgColor-danger, #cf222e);
+  --marked-github-alert-title-color: var(--marked-github-alert-border-color);
 }
 
 @media (prefers-color-scheme: dark) {
   .marked-github-alert-note {
-    --marked-github-alert-border-color: #4493f8;
-    --marked-github-alert-title-color: #4493f8;
+    --marked-github-alert-border-color: var(--fgColor-accent, #4493f8);
+    --marked-github-alert-title-color: var(--marked-github-alert-border-color);
   }
 
   .marked-github-alert-tip {
-    --marked-github-alert-border-color: #3fb950;
-    --marked-github-alert-title-color: #3fb950;
+    --marked-github-alert-border-color: var(--fgColor-success, #3fb950);
+    --marked-github-alert-title-color: var(--marked-github-alert-border-color);
   }
 
   .marked-github-alert-important {
-    --marked-github-alert-border-color: #ab7df8;
-    --marked-github-alert-title-color: #ab7df8;
+    --marked-github-alert-border-color: var(--fgColor-done, #ab7df8);
+    --marked-github-alert-title-color: var(--marked-github-alert-border-color);
   }
 
   .marked-github-alert-warning {
-    --marked-github-alert-border-color: #d29922;
-    --marked-github-alert-title-color: #d29922;
+    --marked-github-alert-border-color: var(--fgColor-attention, #d29922);
+    --marked-github-alert-title-color: var(--marked-github-alert-border-color);
   }
 
   .marked-github-alert-caution {
-    --marked-github-alert-border-color: #f85149;
-    --marked-github-alert-title-color: #f85149;
+    --marked-github-alert-border-color: var(--fgColor-danger, #f85149);
+    --marked-github-alert-title-color: var(--marked-github-alert-border-color);
   }
 }
 
 .marked-github-alert-theme-light .marked-github-alert-note {
-  --marked-github-alert-border-color: #0969da;
-  --marked-github-alert-title-color: #0969da;
+  --marked-github-alert-border-color: var(--fgColor-accent, #0969da);
+  --marked-github-alert-title-color: var(--marked-github-alert-border-color);
 }
 
 .marked-github-alert-theme-light .marked-github-alert-tip {
-  --marked-github-alert-border-color: #1a7f37;
-  --marked-github-alert-title-color: #1a7f37;
+  --marked-github-alert-border-color: var(--fgColor-success, #1a7f37);
+  --marked-github-alert-title-color: var(--marked-github-alert-border-color);
 }
 
 .marked-github-alert-theme-light .marked-github-alert-important {
-  --marked-github-alert-border-color: #8250df;
-  --marked-github-alert-title-color: #8250df;
+  --marked-github-alert-border-color: var(--fgColor-done, #8250df);
+  --marked-github-alert-title-color: var(--marked-github-alert-border-color);
 }
 
 .marked-github-alert-theme-light .marked-github-alert-warning {
-  --marked-github-alert-border-color: #9a6700;
-  --marked-github-alert-title-color: #9a6700;
+  --marked-github-alert-border-color: var(--fgColor-attention, #9a6700);
+  --marked-github-alert-title-color: var(--marked-github-alert-border-color);
 }
 
 .marked-github-alert-theme-light .marked-github-alert-caution {
-  --marked-github-alert-border-color: #cf222e;
-  --marked-github-alert-title-color: #cf222e;
+  --marked-github-alert-border-color: var(--fgColor-danger, #cf222e);
+  --marked-github-alert-title-color: var(--marked-github-alert-border-color);
 }
 
 .marked-github-alert-theme-dark .marked-github-alert-note {
-  --marked-github-alert-border-color: #4493f8;
-  --marked-github-alert-title-color: #4493f8;
+  --marked-github-alert-border-color: var(--fgColor-accent, #4493f8);
+  --marked-github-alert-title-color: var(--marked-github-alert-border-color);
 }
 
 .marked-github-alert-theme-dark .marked-github-alert-tip {
-  --marked-github-alert-border-color: #3fb950;
-  --marked-github-alert-title-color: #3fb950;
+  --marked-github-alert-border-color: var(--fgColor-success, #3fb950);
+  --marked-github-alert-title-color: var(--marked-github-alert-border-color);
 }
 
 .marked-github-alert-theme-dark .marked-github-alert-important {
-  --marked-github-alert-border-color: #ab7df8;
-  --marked-github-alert-title-color: #ab7df8;
+  --marked-github-alert-border-color: var(--fgColor-done, #ab7df8);
+  --marked-github-alert-title-color: var(--marked-github-alert-border-color);
 }
 
 .marked-github-alert-theme-dark .marked-github-alert-warning {
-  --marked-github-alert-border-color: #d29922;
-  --marked-github-alert-title-color: #d29922;
+  --marked-github-alert-border-color: var(--fgColor-attention, #d29922);
+  --marked-github-alert-title-color: var(--marked-github-alert-border-color);
 }
 
 .marked-github-alert-theme-dark .marked-github-alert-caution {
-  --marked-github-alert-border-color: #f85149;
-  --marked-github-alert-title-color: #f85149;
+  --marked-github-alert-border-color: var(--fgColor-danger, #f85149);
+  --marked-github-alert-title-color: var(--marked-github-alert-border-color);
 }
